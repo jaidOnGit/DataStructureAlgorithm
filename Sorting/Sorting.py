@@ -46,6 +46,10 @@ class Sorting:
                 self.array[j+1] = self.array[j] 
                 j = j - 1
             self.array[j+1] = key
+        
+    
+    def shell_sort(self):
+        pass
 
     def selection_sort(self):
         """
@@ -154,8 +158,3 @@ class Sorting:
 
     def heap_sort(self):
         pass
-
-
-
-
-
