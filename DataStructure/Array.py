@@ -104,18 +104,31 @@ class Array:
 
         :return: reversed array
         """
-        reversed_array = self.array[::-1]
+        reversed_array = Array(size=self.size)
+        j = 0
+        for i in range(self.size-1, -1, -1):
+            reversed_array.insert(j, self.array[i])
+            j+=1
         return reversed_array 
 
-    def merge(self, other_array):
+    def merge(self, other_array: object):
         """
         Merge the current array with another array.
 
         :param other_array: The array to merge with the current array.
         :return: A new array with merged elements.
         """
-        merged = self.array + other_array.array
-        return 
+        new_size = self.size + other_array.size
+        merged_array = Array(size=new_size)
+        j = 0
+        for i in range(self.size):
+            merged_array.insert(index=j, value=self.array[i])
+            j+=1
+
+        for k in range(other_array.size):
+            merged_array.insert(index=j, value=other_array[k])
+            j+=1
+        return merged_array
     
 class DynamicArray:
     """

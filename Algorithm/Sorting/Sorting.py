@@ -49,7 +49,30 @@ class Sorting:
         
     
     def shell_sort(self):
-        pass
+        """
+        Shell Sort starts by comparing items that are far apart using a "gap." 
+        Gradually, it reduces the gap and performs comparisons and swaps until all items are sorted.
+        It behaves like Insertion Sort to finalize the sorting when gap is 1
+        """
+        n = len(self.array)
+        gap = n // 2  # Initial gap size
+
+        # Perform sorting with progressively smaller gaps
+        while gap > 0:
+
+            # this for loop is same as insertion sort
+            for i in range(gap, n):
+                key = self.array[i]
+                j = i
+                # Shift elements over the gap until the correct position is found
+                while j >= gap and self.array[j - gap] > key:
+                    self.array[j] = self.array[j - gap]
+                    j -= gap
+                self.array[j] = key
+
+            gap //= 2  # Reduce gap size
+
+        return self.array
 
     def selection_sort(self):
         """
@@ -113,7 +136,6 @@ class Sorting:
 
         return sorted_array
     
-
     def quick_sort(self, arr):
         # Base case: If the array has 1 or no elements, it's already sorted
         if len(arr) <= 1:

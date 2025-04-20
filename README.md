@@ -1,4 +1,5 @@
 Five Step Approach to solve a problem
+
 1. Get Clarity on Constraints ( ask if making assumption for curtain thing is required or not)
     input data ( size of data, type of data, repeatative data)
 2. Idea Generation
@@ -11,6 +12,29 @@ Five Step Approach to solve a problem
 5. Testing
     Validate code using small test case 
     observe behavior on positive testcase & edge cases
+
+- [ ] Data Structure
+  - [ ] Array
+  - [ ] String
+  - [ ] Hash Table
+  - [ ] Link List
+  - [ ] Stack
+  - [ ] Queue
+  - [ ] Heap
+  - [ ] Tree
+  - [ ] Set
+  - [ ] Graph
+- [ ] Algorithm
+  - [ ] Sorting
+  - [ ] Searching
+  - [ ] Brute Force
+  - [ ] Back Tracking & Recursion
+  - [ ] Dynamic Programming
+  - [ ] Greedy Algorithm
+  - [ ] Divide and Conquer
+
+- [ ] Problems
+  - [ ] To be updated.
 
 a. [Binary Search](https://medium.com/techie-delight/binary-search-practice-problems-4c856cd9f26c)
 b. [BFS](https://medium.com/techie-delight/top-20-breadth-first-search-bfs-practice-problems-ac2812283ab1)
