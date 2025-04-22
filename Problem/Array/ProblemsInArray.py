@@ -1,3 +1,5 @@
+from typing import List
+
 class ProblemInArray:
     def getWaveArray(self, array):
         """
@@ -43,3 +45,83 @@ class ProblemInArray:
                     return [i, i+size]
         return [-1]
     
+class TwoSum:
+    def __str__(self):
+        return """
+        1. Two Sum
+        Given an array of integers nums and an integer target, 
+        return indices of the two numbers such that they add up to target.
+        You may assume that each input would have exactly one solution, and you may not use the same element twice.
+        You can return the answer in any order.
+        """
+    
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        """
+        BruteForce
+        Time complexity: O(n^2)
+        Space complexity: O(1)
+        """
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                if nums[j] == target - nums[i]:
+                    return [i, j]
+        # Return an empty list if no solution is found
+        return []
+    
+    def twoSum2(self, nums: List[int], target: int) -> List[int]:
+        """
+        A simple implementation uses two iterations. 
+        In the first iteration, we add each element's value as a key and its index as a value to the hash table. 
+        Then, in the second iteration, we check if each element's complement (target−nums[i]) exists in the hash table. 
+        If it does exist, we return current element's index and its complement's index. 
+        Beware that the complement must not be nums[i] itself!
+        Time complexity: O(n)
+        Space complexity: O(n)
+        """
+        hashmap = {}
+        for i in range(len(nums)):
+            hashmap[nums[i]] = i
+        for i in range(len(nums)):
+            complement = target - nums[i]
+            if complement in hashmap and hashmap[complement] != i:
+                return [i, hashmap[complement]]
+        # If no valid pair is found, return an empty list
+        return []
+    
+class RemoveDuplicates:
+    def __str__(self):
+        return """
+        26. Remove Duplicates from Sorted Array
+        Given an integer array nums sorted in non-decreasing order, 
+        remove the duplicates in-place such that each unique element appears only once. 
+        The relative order of the elements should be kept the same. 
+        Then return the number of unique elements in nums.
+        
+        Consider the number of unique elements of nums to be k, to get accepted, you need to do the following things:
+
+        Change the array nums such that the first k elements of nums contain the unique elements in the order they were present in nums initially. The remaining elements of nums are not important as well as the size of nums.
+        Return k.
+        Custom Judge:
+
+        The judge will test your solution with the following code:
+
+        int[] nums = [...]; // Input array
+        int[] expectedNums = [...]; // The expected answer with correct length
+
+        int k = removeDuplicates(nums); // Calls your implementation
+
+        assert k == expectedNums.length;
+        for (int i = 0; i < k; i++) {
+            assert nums[i] == expectedNums[i];
+        }
+        If all assertions pass, then your solution will be accepted.
+        """
+    
+    def removeDuplicates(self, nums: List[int]) -> int:
+        j = 0
+        for i in range(1, len(nums)):
+            if nums[j] < nums[i]:
+                nums[j + 1] = nums[i]
+                j += 1
+        
+        return j + 1
