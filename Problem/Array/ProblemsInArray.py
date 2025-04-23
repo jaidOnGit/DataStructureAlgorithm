@@ -125,3 +125,55 @@ class RemoveDuplicates:
                 j += 1
         
         return j + 1
+    
+class RemoveElement:
+    def __str__(self):
+        return """
+        27. Remove Element
+        Given an integer array nums and an integer val, remove all occurrences of val in nums in-place. The order of the elements may be changed. Then return the number of elements in nums which are not equal to val.
+
+        Consider the number of elements in nums which are not equal to val be k, to get accepted, you need to do the following things:
+
+        Change the array nums such that the first k elements of nums contain the elements which are not equal to val. The remaining elements of nums are not important as well as the size of nums.
+        Return k.
+        """
+    
+    def removeElement(self, nums: List[int], val: int) -> int:
+        # k = len(nums) 
+        # i = 0
+        # while i < k:
+        #     if nums[i] == val:
+        #         nums[i] = nums[k-1]
+        #         k -= 1
+        #     else: # if i & k both are equal then need to check again for i
+        #         i += 1
+        # return k
+        # in-place : 2 pointer problem
+        writer = 0 # writer pointer
+        for reader in range(len(nums)): # read 
+            if nums[reader] != val:
+                nums[writer] = nums[reader] # write only when non match condition is True
+                writer += 1
+        return writer
+
+class SearchInsertPosition:
+    def __str__(self):
+        return """
+        35. Search Insert Position
+        Given a sorted array of distinct integers and a target value, return the index if the target is found. 
+        If not, return the index where it would be if it were inserted in order.
+
+        You must write an algorithm with O(log n) runtime complexity.
+        """
+    
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        left, right = 0, len(nums) - 1
+        while left <= right:
+            pivot = (left + right) // 2
+            if nums[pivot] == target:
+                return pivot
+            if target < nums[pivot]:
+                right = pivot - 1
+            else:
+                left = pivot + 1
+        return left
