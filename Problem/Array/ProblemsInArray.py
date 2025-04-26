@@ -126,6 +126,32 @@ class RemoveDuplicates:
         
         return j + 1
     
+class ContainsDuplicate:
+    def __str__(self):
+        return """
+        217. Contains Duplicate
+        Given an integer array nums, return true if any value appears at least twice in the array, and return false if every element is distinct.
+        """
+    
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        hash_table = {key: 0 for key in nums}
+        for i in range(len(nums)):
+            if hash_table.get(nums[i], 0) == 1:
+                return True
+            hash_table[nums[i]] += 1
+        return False
+    
+    def containsDuplicate2(self, nums: List[int]) -> bool:
+        pythonic_approach = True
+        if pythonic_approach:
+            return len(set(nums)) != len(nums)
+            
+        nums = sorted(nums)
+        for i in range(len(nums)-1):
+            if nums[i] == nums[i+1]:
+                return True
+        return False
+
 class RemoveElement:
     def __str__(self):
         return """
@@ -154,7 +180,7 @@ class RemoveElement:
             if nums[reader] != val:
                 nums[writer] = nums[reader] # write only when non match condition is True
                 writer += 1
-        return writer
+        return writer   
 
 class SearchInsertPosition:
     def __str__(self):
