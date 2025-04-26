@@ -177,3 +177,120 @@ class SearchInsertPosition:
             else:
                 left = pivot + 1
         return left
+
+class FindPivotIndex:
+    def __str__(self):
+        return """
+    724. Find Pivot Index
+    Given an array of integers nums, calculate the pivot index of this array.
+
+    The pivot index is the index where the sum of all the numbers strictly to the left of the index is equal to the sum of all the numbers strictly to the index's right.
+
+    If the index is on the left edge of the array, then the left sum is 0 because there are no elements to the left. This also applies to the right edge of the array.
+
+    Return the leftmost pivot index. If no such index exists, return -1.
+    """
+
+    def pivotIndex(self, nums: List[int]) -> int:
+        total_sum = 0
+        for i in range(len(nums)):
+            total_sum+= nums[i]
+
+        left_sum = 0
+        for i in range(len(nums)):
+            if left_sum == total_sum - left_sum - nums[i]:
+                return i    
+            left_sum += nums[i]    
+        return -1
+    
+class LargestNumberAtLeastTwiceOfOthers:
+    def __str__(self):
+        return """
+        747. Largest Number At Least Twice of Others
+        You are given an integer array nums where the largest integer is unique.
+
+        Determine whether the largest element in the array is at least twice as much as every other number in the array. If it is, return the index of the largest element, or return -1 otherwise.
+        """
+
+    def dominantIndex(self, nums: List[int]) -> int:
+        max_num = 0
+        max_numIdx = 0
+        for i in range(len(nums)):
+            if max_num < nums[i]:
+                max_num = nums[i]
+                max_numIdx = i
+        
+        for i in range(len(nums)):
+            if nums[i] != max_num and max_num < 2*nums[i]:
+                return -1
+        return max_numIdx
+    
+class PlusOne:
+    def __str__(self):
+        return """
+        66. Plus One
+        You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.
+
+        Increment the large integer by one and return the resulting array of digits.
+        """
+    
+    def plusOne(self, digits: List[int]) -> List[int]:
+        number = 0
+        n = len(digits) - 1
+        for i in range(len(digits)):
+            if n >= 0:
+                number += (digits[i]*(10**n))
+                n -= 1
+                
+        num_list = list()
+        new_num = number + 1
+        while (new_num != 0):
+            num_list.append(new_num%10)
+            new_num = new_num // 10
+        
+        # reverse list
+        n = len(num_list) - 1
+        for i in range(len(num_list)//2):
+            num_list[i], num_list[n-i] = num_list[n-i], num_list[i]
+        return num_list
+    
+class DiagonalTraverse:
+    def __str__(self):
+        return """
+        498. Diagonal Traverse
+        Given an m x n matrix mat, return an array of all the elements of the array in a diagonal order.
+        """
+    
+    def findDiagonalOrder(self, mat: List[List[int]]) -> List[int]:
+        
+        def getDiagonal(mat, i, j, M, N, forward=True):
+            diagonal_elements = list()
+            while i < M and j >= 0:
+                diagonal_elements.append(mat[i][j])
+                i += 1
+                j -= 1
+            if forward:
+                return diagonal_elements
+            else:
+                n = len(diagonal_elements) - 1
+                for i in range(len(diagonal_elements)//2):
+                    diagonal_elements[i], diagonal_elements[n-i] = diagonal_elements[n-i], diagonal_elements[i]
+                return diagonal_elements
+
+        M = len(mat)
+        N = len(mat[0])
+
+        diagonal_order = list()
+        direction = 0
+        i = 0
+        for j in range(N):
+            diagonal_order.extend(getDiagonal(mat,i,j,M,N,forward=(direction%2==1)))
+            direction += 1
+        j = N-1
+        for i in range(1,M):
+            diagonal_order.extend(getDiagonal(mat,i,j,M,N,forward=(direction%2==1)))
+            direction += 1
+        return diagonal_order
+
+
+    
