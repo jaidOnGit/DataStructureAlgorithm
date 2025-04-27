@@ -151,6 +151,21 @@ class ContainsDuplicate:
             if nums[i] == nums[i+1]:
                 return True
         return False
+    
+class ContainsDuplicateII:
+    def __str__(self):
+        return """
+        219. Contains Duplicate II
+        Given an integer array nums and an integer k, return true if there are two distinct indices i and j in the array such that nums[i] == nums[j] and abs(i - j) <= k.
+        """
+    
+    def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
+        hashmap = {}
+        for i in range(len(nums)):
+            if nums[i] in hashmap and abs(i - hashmap[nums[i]]) <= k:
+                return True 
+            hashmap[nums[i]] = i 
+        return False 
 
 class RemoveElement:
     def __str__(self):
@@ -318,5 +333,23 @@ class DiagonalTraverse:
             direction += 1
         return diagonal_order
 
+class BestTimetoBuyandSellStock:
+    def __str__(self):
+        return """
+        121. Best Time to Buy and Sell Stock
+        You are given an array prices where prices[i] is the price of a given stock on the ith day.
 
+        You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
+
+        Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+        """
     
+    def maxProfit(self, prices: List[int]) -> int:
+        min_price = float("inf")
+        max_profit = 0
+        for i in range(len(prices)):
+            if prices[i] < min_price:
+                min_price = prices[i]
+            if prices[i] - min_price > max_profit:
+                max_profit = prices[i] - min_price
+        return max_profit
