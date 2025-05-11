@@ -353,3 +353,69 @@ class BestTimetoBuyandSellStock:
             if prices[i] - min_price > max_profit:
                 max_profit = prices[i] - min_price
         return max_profit
+    
+class MajorityElement:
+    def __str__(self):
+        return """
+        169. Majority Element
+        Given an array nums of size n, return the majority element.
+        The majority element is the element that appears more than ⌊n / 2⌋ times. 
+        You may assume that the majority element always exists in the array.
+        solve the problem in linear time and in O(1) space
+        """
+
+    def majorityElement(self, nums: List[int]) -> int:
+        # boyer moore voting
+        candidate, count = None, 0
+        for num in nums:
+            if count == 0:
+                candidate = num
+            count += (1 if num == candidate else -1)
+        if nums.count(candidate) >= len(nums) / 2:
+            return candidate
+        else:
+            return -1 
+    
+class ValidParentheses:
+    def __str__(self):
+        return """
+        20. Valid Parentheses
+        Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', 
+        determine if the input string is valid.
+
+        An input string is valid if:
+
+        Open brackets must be closed by the same type of brackets.
+        Open brackets must be closed in the correct order.
+        Every close bracket has a corresponding open bracket of the same type.
+        """
+    
+    def isValid(self, s: str) -> bool:
+        stack = []
+        bracket_map = {')': '(', '}': '{', ']': '['} 
+        
+        for char in s:
+            if char in bracket_map.values(): 
+                stack.append(char)
+            elif char in bracket_map.keys():  
+                if not stack or stack.pop() != bracket_map[char]:
+                    return False    
+        return not stack 
+    
+class MoveZeroes:
+    def __str__(self):
+        return """
+        283. Move Zeroes
+        Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements.
+        Note that you must do this in-place without making a copy of the array.
+        """
+    
+    def moveZeroes(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        writer_ptr = 0
+        for reader_ptr in range(len(nums)):
+            if nums[reader_ptr] != 0:
+                nums[writer_ptr], nums[reader_ptr] = nums[reader_ptr], nums[writer_ptr]
+                writer_ptr += 1
