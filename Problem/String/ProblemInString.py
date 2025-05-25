@@ -32,5 +32,20 @@ class MergeStringsAlternately:
                 word2 = word2[1:]
                 n -= 1
         return mergedstr
+
+class FindFirstOccurrance:
+    def __str__(self):
+        return """
+        28. Find the Index of the First Occurrence in a String
+        Given two strings needle and haystack, return the index of the first occurrence of needle in haystack, or -1 if needle is not part of haystack.
+        """
     
+    def strStr(self, haystack: str, needle: str) -> int:
+        # pythonista
+        index = -1
+        if needle in haystack:
+            index = haystack.index(needle)
+        return index
+    
+    # Rabin-Karp algorithm
     
